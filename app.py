@@ -20,6 +20,7 @@ def homepage():
 
 @app.route('/getCsv', methods=['GET'])
 def data():
+    s = 'SELECT * FROM "leads"'
 
     try:
         db_conn = psycopg2.connect(host=t_host, port=t_port, dbname=t_dbname, user=t_user, password=t_pw)
@@ -29,7 +30,9 @@ def data():
         leadlist = db_cursor.fetchall()
         ourData = []
         for x in leadlist:
-            listing = [x[0], x[1], x[2]]
+            listing = []
+            for y in range(0, len(column_names)):
+                listing.append(x[y])
             ourData.append(listing)
 
         with open('leads.csv', "w", encoding="UTF8", newline="") as f:

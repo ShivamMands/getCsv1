@@ -15,9 +15,9 @@ t_pw = "6fb679bd22aec45667687c79a3e4ed958c81cf584b489302a1bb38a9fe397469"
 def homepage():
 
     return """
-    <h1>Hello heroku</h1>"""
+    <a href='/getCsv'> Get csv</a>"""
 
-@app.route('/mandsDemoOrg/getLeads', methods=['GET'])
+@app.route('/getCsv', methods=['GET'])
 def data():
     s = 'SELECT * FROM "leads"'
     try:
